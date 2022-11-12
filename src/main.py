@@ -1,11 +1,11 @@
 # 11/09/2022
 # @gigtih
 
-functions_list = [
-    "GetService",
+deprecated_symbols = [
+    "game:GetService",
     "task.wait",
-    "FindFirstChild",
-    "Destroy"
+    ":FindFirstChild",
+    ":Destroy"
     # "game"
 ]
 
@@ -26,16 +26,12 @@ def deprecate_file(pathToFile: str):
             deprecatedFile.write("--[[ File deprecated with file deprecator by gigtih, https://github.com/gigtih/FileDeprecator Version: {0} ]]\n\n".format(str(DEPRECATOR_VERSION)))
 
             for lineContent in file_content:
-                if functions_list[0] in lineContent:
-                    deprecatedFile.write(lineContent.replace("game:GetService", "Game:service"))
-                elif functions_list[1] in lineContent:
-                    deprecatedFile.write(lineContent.replace("task.wait", "Wait"))
-                elif functions_list[2] in lineContent:
-                    deprecatedFile.write(lineContent.replace(":FindFirstChild", ":findFirstChild"))
-                elif functions_list[3] in lineContent:
-                    deprecatedFile.write(lineContent.replace(":Destroy", ":destroy"))
-                else:
-                    deprecatedFile.write(lineContent)
+                for func in deprecated_symbols:
+                    if func in lineContent:
+                        deprecatedFile.write(lineContent.replace("game:GetService", "Game:service"))
+                        continue
+                    else:
+                        deprecatedFile.write(lineContent)
 
             deprecatedFile.close()
 
