@@ -9,7 +9,7 @@ deprecated_symbols = [
     # "game"
 ]
 
-DEPRECATOR_VERSION = 0.1
+DEPRECATOR_VERSION = "0.3"
 
 selected = input("Welcome to the file deprecator. Please select a option: [D] to deprecate (must be a luau file), [V] for the version\n")
 lowerinput = selected.lower().strip()
@@ -44,4 +44,4 @@ if lowerinput == 'd':
     file_path = input("Great! Now please insert a path to a file: ")
     deprecate_file(file_path.strip())
 elif lowerinput == 'v':
-    print("The current deprecator version is: " + str(DEPRECATOR_VERSION))
+    print("The current deprecator version is: " + DEPRECATOR_VERSION)
