@@ -1,6 +1,8 @@
 # 11/09/2022
 # @gigtih
 
+from sys import argv
+
 deprecated_symbols = [
     "game:GetService",
     "task.wait",
@@ -23,7 +25,7 @@ def deprecate_file(pathToFile: str):
         file_content = file.readlines()
         print("\nDEPRECATING...")
         with open(deprecated_file_path + ".lua", 'w') as deprecatedFile:
-            deprecatedFile.write("--[[ File deprecated with file deprecator by gigtih, https://github.com/gigtih/FileDeprecator Version: {0} ]]\n\n".format(str(DEPRECATOR_VERSION)))
+            deprecatedFile.write("--[[ File deprecated with file deprecator by gigtih, https://github.com/gigtih/FileDeprecator Version: {0} ]]\n\n".format(DEPRECATOR_VERSION))
 
             for lineContent in file_content:
                 for func in deprecated_symbols:
@@ -39,6 +41,11 @@ def deprecate_file(pathToFile: str):
         print("\n{0} was successfully deprecated, deprecated file can be found at: {1}".format(file.name, deprecatedFile.name))
 
     return
+
+def main(args: list[str]):
+    if not args: exit(1)
+
+    if args[0] == "--version": print(DEPRECATOR_VERSION); return
 
 if lowerinput == 'd':
     file_path = input("Great! Now please insert a path to a file: ")
